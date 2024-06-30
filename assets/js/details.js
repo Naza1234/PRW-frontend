@@ -97,9 +97,9 @@ function populateDate(data){
     ${data.Name}
     </h2>
     
-    <p>
+    <textarea>
     ${data.Details}
-    </p>
+    </textarea>
     <p class="card-badge green ${data.for === "rentals"?"green":"orange"}" style="position: static; top: unset; left: unset; right: unset; color: #fff;">${data.for}</p>
     <section style="${data.Chart === "car" ? "opacity: 0;" : ""}">
     <div>
