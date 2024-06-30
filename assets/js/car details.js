@@ -222,9 +222,9 @@ function runImage() {
               <a href="#">${data.Name}</a>
             </h3>
      
-            <p class="card-text">
-             ${data.Details}
-            </p>
+            <textarea>
+            ${data.Details}
+            </textarea>
      
             <ul class="card-list" style="${data.Chart === "car" ? "opacity: 0;" : ""}">
      

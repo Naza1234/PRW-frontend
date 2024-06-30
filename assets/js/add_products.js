@@ -49,6 +49,8 @@ form.addEventListener("submit", (e) => {
         Chart: document.getElementsByTagName("select")[1].value,// Corrected property name
         LocationName: input[12].value,
         LocationMap: input[13].value,
+        landLordAgentsName: input[14].value,
+        landLordAgentsContact: input[15].value,
     };
 
     const requestForProductDetails = {

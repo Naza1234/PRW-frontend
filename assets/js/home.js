@@ -122,10 +122,10 @@ function showDate(No,data,itemType){
 
          <div>
            <p class="author-name">
-             <a href="#">William Seklo</a>
+             <a href="#">${data.landLordAgentsName || "not available"}</a>
            </p>
 
-           <p class="author-title">Estate Agents</p>
+           <p class="author-title">${data.landLordAgentsContact || "not available"}</p>
          </div>
 
        </div>
