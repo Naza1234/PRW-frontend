@@ -14,15 +14,13 @@ function goSeeDetails() {
     
     for (let i = 0; i < items.length; i++) {
         const element = items[i];
-        var idElement = element.getElementsByClassName("hid")[0];
-        if (idElement) {
-            var id = idElement.textContent.trim();
-            element.addEventListener("click", () => {
+      
+           element.addEventListener("click", () => {
+                var idElement = element.getElementsByClassName("hid")[0];
+                var id = idElement.textContent.trim();
                 window.location = `${winUrl}/details.html?r=${id}`;
-            });
-        } else {
-            console.error("Error: hid element not found in items element.");
-        }
+            })
+      
     }
 }
 function goSeeDetailsCar() {
