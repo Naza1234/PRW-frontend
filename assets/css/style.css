@@ -94,7 +94,9 @@ img:not([src]){
 }
 
 li { list-style: none; }
-
+li{
+  position: relative;
+}
 a { text-decoration: none; }
 
 a,
