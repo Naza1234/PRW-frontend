@@ -5,8 +5,6 @@ const apiUrl="https://prw-server.onrender.com"
 
 
 
-
-
 /**
  * element toggle function
  */
