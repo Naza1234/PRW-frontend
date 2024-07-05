@@ -263,7 +263,7 @@ function editElements() {
     var item = element.parentElement.parentElement
     var id = item.getElementsByClassName("hid")[0].innerHTML.trim()
     console.log(id);
-    window.location=`${winUrl}/admine-pages/editeproducts.html?r=${id}`
+    window.location=`${winUrl}/admine-pages/editeproducts.HTML?r=${id}`
     // deleteItem(id)
   })
  }
