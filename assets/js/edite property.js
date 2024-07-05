@@ -86,66 +86,26 @@ const currentURL = window.location.search;
         var html=`
        
         <section class="top_section">
-            <div class="hover-img main-img">
-                <img src="" alt="" class="img-uploded main">
-                <input type="file" required>
+            <div class="hover-img heading-cover-img main-img">
+                <img src="${coverImageData.ImageUrl}" alt="" class="img-uploded main">
+                <input type="file" >
                 <span>
+                <p class="hid">${coverImageData._id}</p>
                     <img src="../assets/images/photos.png" alt="" class="icon">
                 </span>
             </div>
             <section class="other-imgs">
-                <div class="hover-img other-img">
-                    <img src="" alt="" class="img-uploded main">
-                    <input type="file" required>
-                    <span>
-                        <img src="../assets/images/photos.png" alt="" class="icon">
-                    </span>
-                </div>
-                <div class="hover-img other-img">
-                    <img src="" alt="" class="img-uploded main">
-                    <input type="file" required>
-                    <span>
-                        <img src="../assets/images/photos.png" alt="" class="icon">
-                    </span>
-                </div>
-                <div class="hover-img other-img">
-                    <img src="" alt="" class="img-uploded main">
-                    <input type="file" required>
-                    <span>
-                        <img src="../assets/images/photos.png" alt="" class="icon">
-                    </span>
-                </div>
-                <div class="hover-img other-img">
-                    <img src="" alt="" class="img-uploded main">
-                    <input type="file">
-                    <span>
-                        <img src="../assets/images/photos.png" alt="" class="icon">
-                    </span>
-                </div>
-                <div class="hover-img other-img">
-                    <img src="" alt="" class="img-uploded main">
-                    <input type="file">
-                    <span>
-                        <img src="../assets/images/photos.png" alt="" class="icon">
-                    </span>
-                </div>
-                <div class="hover-img other-img">
-                    <img src="" alt="" class="img-uploded main">
-                    <input type="file">
-                    <span>
-                        <img src="../assets/images/photos.png" alt="" class="icon">
-                    </span>
-                </div>
+               
             </section>
         </section>
-        <section class="other-info">
+        <section class="other-info update-inputs-write">
           <label for="name">
             product name
-            <input type="text" id="name"  value="${propertyData.Name}">
+            <input type="text" name="Name" id="name"  value="${propertyData.Name}">
           </label>
           <label for="price">
             product price
-            <input type="text" id="price" value="${propertyData.Price}">
+            <input type="text" name="Price" id="price" value="${propertyData.Price}">
           </label>
           <label for="for">
             what type of sales
@@ -165,64 +125,253 @@ const currentURL = window.location.search;
         <h2>
             details of the Products
         </h2>
-        <section class="textarea" style="display: flex;" >
-            <textarea name=""  placeholder="write something about the products" style="width: 100%;" >value="${propertyData.Details}"</textarea>
+        <section class="textarea update-inputs-write" style="display: flex;" >
+            <textarea name="Details"  placeholder="write something about the products" style="width: 100%;" >${propertyData.Details}</textarea>
         </section>
         <h2>
             only if you are adding a house
         </h2>
-        <section class="option">
+        <section class="option update-inputs-write">
             <label for="Bedrooms">
                 product Bedrooms No
-                <input type="text" id="Bedrooms" value="${propertyData.Bedrooms}">
+                <input type="text" name="Bedrooms" id="Bedrooms" value="${propertyData.Bedrooms}">
               </label>
 
             <label for="Bathrooms">
                 product Bathrooms No
-                <input type="text" id="Bathrooms" value="${propertyData.Bathrooms}">
+                <input type="text" id="Bathrooms" name="Bathrooms" value="${propertyData.Bathrooms}">
               </label>
 
             <label for="squareFit">
                 product squareFit 
-                <input type="text" id="squareFit" value="${propertyData.squareFit}">
+                <input type="text" id="squareFit" name="squareFit" value="${propertyData.squareFit}">
               </label>
         </section>
         <h2>
          Location details
         </h2>
-        <section class="option">
+        <section class="option update-inputs-write">
           <label for="LocationName">
               location 
-              <input type="text" id="LocationName" value="${propertyData.LocationName}">
+              <input type="text" id="LocationName" name="LocationName" value="${propertyData.LocationName}">
             </label>
 
           <label for="LocationMap">
               location Map
-              <input type="text" id="LocationMap" value="${propertyData.LocationMap}">
+              <input type="text" id="LocationMap" name="LocationMap" >
             </label>
       </section>
         <h2>
          owner info
         </h2>
-        <section class="option">
+        <section class="option update-inputs-write">
           <label for="Bedrooms">
               landlord / agent name
-              <input type="text" id="Bedrooms" value="${propertyData.landLordAgentsName}">
+              <input type="text" id="Bedrooms" name="landLordAgentsName" value="${propertyData.landLordAgentsName || ""}" >
             </label>
 
           <label for="Bathrooms">
               landlord /agent contact
-              <input type="text" id="Bathrooms" value="${propertyData.landLordAgentsContact}">
+              <input type="text" id="Bathrooms" name="landLordAgentsContact" value="${propertyData.landLordAgentsContact || ""}">
             </label>
       </section>
-        <button>
+        <button >
             add property
         </button>
      
     
         `
         container.insertAdjacentHTML("beforeend",html)
+        uploadedImg(otherImageData)
+        renderImg();
+        renderCoverImg()
      }
      
      
-     
+     function uploadedImg(imgs){
+        var container=document.getElementsByClassName("other-imgs")[0]
+        for (let i = 0; i < imgs.length; i++) {
+            const element = imgs[i];
+            var imgHtml=`
+            <div class="hover-img other-img">
+            <img src="${element.ImageUrl}" alt="" class="img-uploded main">
+            <input type="file" >
+            <span>
+            <p class="hid">${element._id}</p>
+                <img src="../assets/images/photos.png" alt="" class="icon">
+            </span>
+            </div>
+    
+            `
+            container.insertAdjacentHTML("beforeend",imgHtml)
+        }
+     }
+
+     function renderImg() {
+        var ImgInputs = document.querySelectorAll(".other-imgs input");
+        for (let i = 0; i < ImgInputs.length; i++) {
+            const element = ImgInputs[i];
+            element.addEventListener("change", () => {
+                var InputParent = element.parentElement;
+                var InputImage = element.files[0];
+                var img = InputParent.getElementsByClassName("img-uploded")[0];
+                // console.log(img,InputParent);
+                if (InputImage) {
+                    img.src = URL.createObjectURL(InputImage);
+                }
+            });
+        }
+    }
+    
+
+     function renderCoverImg() {
+        var ImgInputs = document.querySelectorAll(".heading-cover-img input")[0]
+      
+         ImgInputs.addEventListener("change", () => {
+                var InputParent =  ImgInputs.parentElement;
+                var InputImage =  ImgInputs.files[0];
+                var img = InputParent.getElementsByClassName("img-uploded")[0];
+                // console.log(img,InputParent);
+                if (InputImage) {
+                    img.src = URL.createObjectURL(InputImage);
+                }
+            });
+        
+    }
+    
+
+
+  var form=document.getElementsByClassName("add-products")[0]
+
+  
+
+  form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      document.querySelector(".add-products button").classList.add("active")
+      var sectionOne = document.querySelector(".update-inputs-write");
+      if (!sectionOne) {
+          console.error('Section with class "update-inputs-write" not found');
+          return;
+      }
+  
+      // Create a FormData object from the form
+      const formData = new FormData(form);
+      const formContent = {};
+  
+      formData.forEach((value, key) => {
+          if (value !== "") {
+              formContent[key] = value;
+          }
+      });
+  
+      console.log(formContent);
+  
+      const promises = [];
+  
+      // Update product data
+      promises.push(updateProduct(formContent));
+  
+      // Update other images
+      var otherImage = document.querySelectorAll(".other-imgs input");
+      for (let i = 0; i < otherImage.length; i++) {
+          const element = otherImage[i];
+          var InputParent = element.parentElement;
+          var InputImage = element.files[0];
+          var id = InputParent.getElementsByClassName("hid")[0].innerHTML.trim();
+          if (InputImage && id) {
+              console.log(InputImage, id);
+              promises.push(updateOtherImg(InputImage, id));
+          } else {
+              console.log("non");
+          }
+      }
+  
+      // Update cover image
+      var coverImgInput = document.querySelector(".heading-cover-img input");
+      if (coverImgInput) {
+          var InputParent = coverImgInput.parentElement;
+          var InputImage = coverImgInput.files[0];
+          var id = InputParent.getElementsByClassName("hid")[0].innerHTML.trim();
+          if (InputImage && id) {
+              console.log(InputImage, id);
+              promises.push(updateCoverImg(InputImage, id));
+          } else {
+              console.log("non");
+          }
+      }
+  
+      // Wait for all promises to resolve
+      await Promise.all(promises);
+      document.querySelector(".add-products button").classList.remove("active")
+      window.location.reload()
+      console.log('All done');
+  });
+  
+  async function updateProduct(formContent) {
+      try {
+          const response = await fetch(`${apiUrl}/property/${itemId}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formContent),
+          });
+  
+          if (response.ok) {
+              const result = await response.json();
+              console.log('Item updated successfully:', result);
+              // Perform any additional actions, such as updating the DOM
+          } else {
+              console.error('Failed to update item:', response.statusText);
+          }
+      } catch (error) {
+          console.error('Error:', error);
+      }
+  }
+  
+  async function updateOtherImg(InputImage, id) {
+      const formData = new FormData();
+      formData.append("imageUrl", InputImage);
+  
+      const requestForOtherImage = {
+          method: 'PUT',
+          body: formData
+      };
+  
+      try {
+          const response = await fetch(`${apiUrl}/otherImage/${id}`, requestForOtherImage);
+  
+          if (!response.ok) {
+              throw new Error(`Failed to update image: ${response.statusText}`);
+          }
+  
+          const data = await response.json();
+          console.log('Image updated successfully:', data);
+      } catch (error) {
+          console.error('Error:', error);
+      }
+  }
+  
+  async function updateCoverImg(InputImage, id) {
+      const formData = new FormData();
+      formData.append("imageUrl", InputImage);
+  
+      const requestForOtherImage = {
+          method: 'PUT',
+          body: formData
+      };
+  
+      try {
+          const response = await fetch(`${apiUrl}/coverImage/${id}`, requestForOtherImage);
+  
+          if (!response.ok) {
+              throw new Error(`Failed to update image: ${response.statusText}`);
+          }
+  
+          const data = await response.json();
+          console.log('Image updated successfully:', data);
+      } catch (error) {
+          console.error('Error:', error);
+      }
+  }
+  
